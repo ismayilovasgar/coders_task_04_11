@@ -64,13 +64,14 @@ const saveData = (e) => {
     inputs.map((input) => {
       input.parentElement.innerHTML = input.value;
     });
+    
     e.target.textContent = "Duzelis Et";
     e.target.className = "editBtn";
     e.target.nextElementSibling.textContent = "Sil";
     e.target.nextElementSibling.className = "removeBtn";
 
     allow_edit = false;
-    
+
   } else {
     const data = [...e.target.parentElement.parentElement.childNodes];
     let old_value;
