@@ -56,41 +56,44 @@ addBtn.addEventListener("click", (e) => {
   tbody.append(row);
 
   orderRow();
-  // e.preventDefault();
 });
 
 const saveData = (e) => {
   if (allow_edit) {
-    console.log("yadda saxla menusu");
-
     const inputs = [...document.querySelectorAll("input")];
     inputs.map((input) => {
-      input.parentElement.textContent = input.value;
+      input.parentElement.innerHTML = input.value;
     });
-    console.log(inputs);
     e.target.textContent = "Duzelis Et";
     e.target.className = "editBtn";
     e.target.nextElementSibling.textContent = "Sil";
     e.target.nextElementSibling.className = "removeBtn";
+
     allow_edit = false;
+    
   } else {
-    console.log("duzelis et menusu");
-    console.log(e.target.parentElement.parentElement);
-    const datas = [
-      ...e.target.parentElement.parentElement.querySelectorAll(".data"),
-    ];
-    datas.map((data, index) => {
-      data.innerHTML = `<input value="${data.textContent}">`;
+    const data = [...e.target.parentElement.parentElement.childNodes];
+    let old_value;
+    data.map((el, index) => {
+      old_value = el.textContent;
+      if (index === 1) {
+        el.innerHTML = `<input placeholder="Ad" type="text" value='${old_value}'>`;
+      }
+      if (index === 2) {
+        el.innerHTML = `<input placeholder="Soyad" type="text" value='${old_value}'>`;
+      }
+      if (index === 3) {
+        el.innerHTML = `<input placeholder="Yas" type="number" value='${old_value}'>`;
+      }
     });
+
     e.target.textContent = "Yadda Saxla";
     e.target.className = "saveBtn";
     e.target.nextElementSibling.textContent = "Legv et";
     e.target.nextElementSibling.className = "cancelBtn";
-
     allow_edit = true;
   }
   allow = true;
-  // e.preventDefault();
 };
 
 const orderRow = (e) => {
