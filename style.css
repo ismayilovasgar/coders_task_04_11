@@ -21,12 +21,7 @@ td {
   padding: 10px;
   text-align: center;
 }
-/* table {
-  width: 100%;
-}
-td {
-  width: 20%;
-} */
+
 button {
   padding: 6px 12px;
   cursor: pointer;
@@ -38,19 +33,18 @@ button {
   font-size: 18px;
 }
 .saveBtn {
-  background-color: rgb(30, 255, 0);
+  background-color: rgb(54, 192, 36);
   margin: 0 15px 0 0;
 }
 .cancelBtn {
-  background-color: rgba(227, 235, 14, 0.986);
+  background-color: rgba(235, 14, 14, 0.986);
 }
 .removeBtn {
   background-color: rgb(255, 0, 0);
 }
 .editBtn {
-  background-color: rgba(209, 18, 40, 0.784);
+  background-color: rgba(141, 127, 37, 0.784);
   margin: 0 15px 0 0;
-  color: white;
 }
 input {
   outline: none;
