@@ -35,17 +35,18 @@ button {
   font-size: 18px;
 }
 .saveBtn {
-  background-color: rgb(54, 192, 36);
+  background-color: rgb(83, 175, 80);
   margin: 0 15px 0 0;
 }
 .cancelBtn {
-  background-color: rgba(235, 14, 14, 0.986);
+  background-color: rgb(250, 235, 57);
 }
 .removeBtn {
-  background-color: rgb(255, 0, 0);
+  background-color: rgb(231, 65, 51);
 }
 .editBtn {
-  background-color: rgba(141, 127, 37, 0.784);
+  background-color: rgb(85, 85, 85);
+  color: white;
   margin: 0 15px 0 0;
 }
 input {
@@ -67,4 +68,3 @@ th:first-child {
 table tr {
   padding: 5%;
 }
-
