@@ -1,7 +1,6 @@
 const addBtn = document.querySelector(".addBtn");
 const tbody = document.querySelector("tbody");
 let allow = true;
-let olf_values = [];
 
 //************************************** */
 const orderRow = (e) => {
