@@ -30,20 +30,29 @@ const saveData = (e) => {
   e.target.addEventListener("click", editData);
   orderRow();
 };
+
 function editDataValues(e) {
-  const data = [...e.target.parentElement.parentElement.childNodes];
+  //* old version
+  // const data = [...e.target.parentElement.parentElement.childNodes];
+  // let old_value;
+  // data.map((el, index) => {
+  //   old_value = el.textContent;
+  //   if (index === 1) {
+  //     el.innerHTML = `<input placeholder="Ad" type="text" value='${old_value}'>`;
+  //   }
+  //   if (index === 2) {
+  //     el.innerHTML = `<input placeholder="Soyad" type="text" value='${old_value}'>`;
+  //   }
+  //   if (index === 3) {
+  //     el.innerHTML = `<input placeholder="Yas" type="number" value='${old_value}'>`;
+  //   }
+  // });
+
+  const data = [ ...e.target.parentElement.parentElement.querySelectorAll(".data")];
   let old_value;
-  data.map((el, index) => {
-    old_value = el.textContent;
-    if (index === 1) {
-      el.innerHTML = `<input placeholder="Ad" type="text" value='${old_value}'>`;
-    }
-    if (index === 2) {
-      el.innerHTML = `<input placeholder="Soyad" type="text" value='${old_value}'>`;
-    }
-    if (index === 3) {
-      el.innerHTML = `<input placeholder="Yas" type="number" value='${old_value}'>`;
-    }
+  data.map((element, index) => {
+    old_value = element.textContent;
+    element.innerHTML = `<input  type="text" value='${old_value}'>`;
   });
 }
 
@@ -85,71 +94,19 @@ const cancelData = (e) => {
   e.target.previousElementSibling.addEventListener("click", editData);
 };
 
-// const removeData = (e) => {
-//   const inputs = [...document.querySelectorAll("input")];
-//   inputs.map((input, key) => {
-//     input.parentElement.textContent = oldValues[key];
-//   });
-//   e.target.textContent = "Sil";
-//   e.target.removeEventListener("click", cancelData);
-//   e.target.addEventListener("click", removeData);
-//   e.target.previousElementSibling.textContent = "Düzəliş et";
-//   e.target.previousElementSibling.classList.remove("save");
-//   e.target.previousElementSibling.classList.add("edit");
-//   e.target.previousElementSibling.removeEventListener("click", saveData);
-//   e.target.previousElementSibling.addEventListener("click", editData);
-// };
-
 const removeData = (e) => {
   e.target.parentElement.parentElement.remove();
   e.target.textContent = "Sil";
   e.target.className = "removeBtn";
   e.target.removeEventListener("click", cancelData);
   e.target.addEventListener("click", removeData);
-  // e.target.removeEventListener("click", removeData);
-  // e.target.addEventListener("click", removeData);
 
   allow = true;
   orderRow();
 };
 
 //************************************************* */
-// const saveData = (e) => {
-//   allow = true;
-//   const inputs = [...document.querySelectorAll("input")];
-//   inputs.map((input) => {
-//     input.parentElement.textContent = input.value;
-//   });
-//   e.target.textContent = "Düzəliş et";
-//   e.target.classList.remove("save");
-//   e.target.classList.add("edit");
-//   e.target.removeEventListener("click", saveData);
-//   e.target.addEventListener("click", editData);
-// };
 
-// const editData = (e) => {
-//   e.target.textContent = "Sil";
-//   e.target.className = "removeBtn";
-//   e.target.previousElementSibling.textContent = "Yadda Saxla";
-//   e.target.previousElementSibling.className = "saveBtn";
-// };
-
-// const removeData = (e) => {
-//   const inputs = [...document.querySelectorAll("input")];
-//   inputs.map((input, key) => {
-//     input.parentElement.textContent = oldValues[key];
-//   });
-//   e.target.textContent = "Sil";
-//   e.target.removeEventListener("click", cancelData);
-//   e.target.addEventListener("click", removeData);
-//   e.target.previousElementSibling.textContent = "Düzəliş et";
-//   e.target.previousElementSibling.classList.remove("save");
-//   e.target.previousElementSibling.classList.add("edit");
-//   e.target.previousElementSibling.removeEventListener("click", saveData);
-//   e.target.previousElementSibling.addEventListener("click", editData);
-// };
-
-//****************************** */
 addBtn.addEventListener("click", () => {
   if (!allow) {
     alert("Öncəki xananı doldurun pls...");
@@ -161,18 +118,21 @@ addBtn.addEventListener("click", () => {
   const noTd = document.createElement("td");
 
   const nameTd = document.createElement("td");
+  nameTd.classList.add("data");
   const nameInput = document.createElement("input");
   nameInput.setAttribute("type", "text");
   nameInput.setAttribute("placeholder", "Ad");
   nameTd.append(nameInput);
 
   const surnameTd = document.createElement("td");
+  surnameTd.classList.add("data");
   const surnameInput = document.createElement("input");
   surnameInput.setAttribute("type", "text");
   surnameInput.setAttribute("placeholder", "Soyad");
   surnameTd.append(surnameInput);
 
   const ageTd = document.createElement("td");
+  ageTd.classList.add("data");
   const ageInput = document.createElement("input");
   ageInput.setAttribute("type", "number");
   ageInput.setAttribute("placeholder", "Yaş");
