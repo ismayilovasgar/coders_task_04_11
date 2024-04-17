@@ -12,48 +12,47 @@ const orderRow = (e) => {
 
 const saveData = (e) => {
   console.log("savedata");
-
-  allow = true;
   const inputs = [...document.querySelectorAll("input")];
   inputs.map((input) => {
     input.parentElement.textContent = input.value;
   });
+
   e.target.textContent = "Duzelis et";
   e.target.nextElementSibling.textContent = "Sil";
   e.target.nextElementSibling.className = "removeBtn";
   e.target.nextElementSibling.removeEventListener("click", cancelData);
   e.target.nextElementSibling.addEventListener("click", removeData);
+
   e.target.classList.remove("saveBtn");
   e.target.classList.add("editBtn");
   e.target.removeEventListener("click", saveData);
   e.target.addEventListener("click", editData);
+
   orderRow();
+  allow = true;
 };
 
 function editDataValues(e) {
-  //* old version
-  // const data = [...e.target.parentElement.parentElement.childNodes];
-  // let old_value;
-  // data.map((el, index) => {
-  //   old_value = el.textContent;
-  //   if (index === 1) {
-  //     el.innerHTML = `<input placeholder="Ad" type="text" value='${old_value}'>`;
-  //   }
-  //   if (index === 2) {
-  //     el.innerHTML = `<input placeholder="Soyad" type="text" value='${old_value}'>`;
-  //   }
-  //   if (index === 3) {
-  //     el.innerHTML = `<input placeholder="Yas" type="number" value='${old_value}'>`;
-  //   }
-  // });
-
-  const data = [ ...e.target.parentElement.parentElement.querySelectorAll(".data")];
-  let old_value;
-  data.map((element, index) => {
-    old_value = element.textContent;
-    element.innerHTML = `<input  type="text" value='${old_value}'>`;
+  //* new version
+  old_data.length = 0;
+  const data = [...e.target.closest("tr").querySelectorAll("td")].slice(1, 4);
+  data.map((td, index) => {
+    const input = document.createElement("input");
+    input.value = td.textContent;
+    old_data.push(td.textContent);
+    td.textContent = "";
+    td.append(input);
   });
+
+  //* old version
+  // const data = [...e.target.closest("tr").querySelectorAll(".data")];
+  // let old_value;
+  // data.map((element, index) => {
+  //   old_value = element.textContent;
+  //   element.innerHTML = `<input  type="text" value='${old_value}'>`;
+  // });
 }
+let old_data = [];
 
 const editData = (e) => {
   editDataValues(e);
@@ -77,8 +76,8 @@ const editData = (e) => {
 const cancelData = (e) => {
   console.log("canceldata");
   const inputs = [...document.querySelectorAll("input")];
-  inputs.map((input) => {
-    input.parentElement.textContent = input.value;
+  inputs.map((input, index) => {
+    input.parentElement.textContent = old_data[index];
   });
 
   e.target.textContent = "Sil";
@@ -94,7 +93,7 @@ const cancelData = (e) => {
 };
 
 const removeData = (e) => {
-  e.target.parentElement.parentElement.remove();
+  e.target.closest("tr").remove();
   e.target.textContent = "Sil";
   e.target.className = "removeBtn";
   e.target.removeEventListener("click", cancelData);
